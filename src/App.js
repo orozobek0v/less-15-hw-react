@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { expenses } from "./Components/Expenses/ExpensesData/ExpensesData";
+import ExpenseItem from "./Components/Expenses/ExpenseItem/ExpenseItem";
+import AddExpense from "./Components/NewExpense/AddExpense/AddExpense";
+import { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="App">
+        <AddExpense />
+        {expenses.map((el, i, arr) => {
+          return (
+            <ExpenseItem
+              key={el.id}
+              date={el.date}
+              title={el.title}
+              amount={el.amount}
+            />
+          );
+        })}
+      </div>
+    );
+  }
 }
-
 export default App;
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <AddExpense />
+//       {expenses.map((el, i, arr) => {
+//         return (
+//           <ExpenseItem
+//             key={el.id}
+//             date={el.date}
+//             title={el.title}
+//             amount={el.amount}
+//           />
+//         );
+//       })}
+//     </div>
+//   );
+// }
